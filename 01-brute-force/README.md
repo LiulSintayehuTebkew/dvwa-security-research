@@ -9,13 +9,11 @@ In this vulnerability we have login page asking username and password. Even thou
 
 The first level of security is low. Which is very insecure interms of many things but one thing is that there is no input validation. This means it is also vulnerable to sql injection. I will write that in a different documentation.
 
----
 
 ## Key Insight
 
 The power of brute force highly relies on the weakness of the password. If weak or common passwords are used brute forcing tools like burp suites intruder or hyda (for this demo I used Burp Suite, I will also write for hydra next time) it will be much easier and can get the correct password in minutes.
 
----
 
 ## Attack Demonstration (Using Burp Suite)
 
