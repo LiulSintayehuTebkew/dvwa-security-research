@@ -25,7 +25,6 @@ The power of brute force highly relies on the weakness of the password. If weak 
 6. Start attack  
 7. After some time sort the output by length and the different highest is the password  
 
----
 
 ## Takeaway
 
