@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ DVWA Security Research Portfolio
+#  DVWA Security Research Portfolio
 
 ### *From Vulnerability to Defence — A Practical Study*
 
@@ -15,7 +15,7 @@ Kali Linux → Metasploitable2 (DVWA) | VirtualBox Host-Only Network
 
 ---
 
-## ⚠️ Legal Disclaimer
+##  Legal Disclaimer
 
 > All research documented in this repository was conducted 
 > exclusively in an isolated VirtualBox lab environment on 
@@ -30,7 +30,7 @@ Kali Linux → Metasploitable2 (DVWA) | VirtualBox Host-Only Network
 
 ---
 
-## 👋 A Note Before You Read
+##  A Note Before You Read
 
 Most DVWA write-ups on GitHub look the same. Someone runs a 
 tool, gets a result, takes a screenshot, and calls it done. 
@@ -52,7 +52,7 @@ actually needs to detect and respond to threats effectively.
 
 ---
 
-## 🧪 Lab Environment
+##  Lab Environment
 
 | Component | Details |
 |-----------|---------|
@@ -62,12 +62,12 @@ actually needs to detect and respond to threats effectively.
 | Primary Tools | Burp Suite Community, browser DevTools |
 | Security Levels Tested | Low · Medium · High · Impossible |
 
-📁 See [lab-setup](lab-setup/README.md) for full environment 
+ See [lab-setup](lab-setup/README.md) for full environment 
 configuration with screenshots.
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 ```
 dvwa-security-research/
 │
@@ -87,7 +87,7 @@ dvwa-security-research/
 
 ---
 
-## 🔍 Vulnerability Index
+##  Vulnerability Index
 
 Each entry below links to a full write-up covering all four 
 security levels, annotated screenshots, PHP source code 
@@ -98,7 +98,7 @@ real-world breach examples, and the correct remediation.
 
 ### 01 — Brute Force
 
-📁 [Full Write-Up](01-brute-force/README.md)
+ [Full Write-Up](01-brute-force/README.md)
 
 **What it is:** Systematically attempting username and password 
 combinations against a login form with no rate limiting or 
@@ -126,7 +126,7 @@ sequences. Detecting this pattern is a daily SOC tier 1 task.
 
 ### 02 — Command Injection
 
-📁 [Full Write-Up](02-command-injection/README.md)
+ [Full Write-Up](02-command-injection/README.md)
 
 **What it is:** Passing user input directly into a system 
 command without sanitisation, allowing shell metacharacters 
@@ -154,7 +154,7 @@ detection signal.
 
 ### 03 — SQL Injection
 
-📁 [Full Write-Up](03-sql-injection/README.md)
+ [Full Write-Up](03-sql-injection/README.md)
 
 **What it is:** Manipulating the structure of a SQL query by 
 injecting code through user input, allowing an attacker to 
@@ -183,7 +183,7 @@ containing database information in HTTP responses.
 
 ### 04 — XSS Reflected
 
-📁 [Full Write-Up](04-xss-reflected/README.md)
+ [Full Write-Up](04-xss-reflected/README.md)
 
 **What it is:** User input that is immediately reflected back 
 in the HTTP response without encoding, allowing script 
@@ -213,7 +213,7 @@ to come from trusted domains.
 
 ### 05 — XSS Stored
 
-📁 [Full Write-Up](05-xss-stored/README.md)
+[Full Write-Up](05-xss-stored/README.md)
 
 **What it is:** Malicious script that is saved to the database 
 and executes in every user's browser that loads the affected 
@@ -243,7 +243,7 @@ detection signals.
 
 ### 06 — CSRF
 
-📁 [Full Write-Up](06-csrf/README.md)
+ [Full Write-Up](06-csrf/README.md)
 
 **What it is:** Tricking an authenticated user into 
 submitting a forged request to a web application they 
@@ -274,7 +274,7 @@ preceding GET request to the form page.
 
 ### 07 — File Inclusion
 
-📁 [Full Write-Up](07-file-inclusion/README.md)
+ [Full Write-Up](07-file-inclusion/README.md)
 
 **What it is:** Manipulating a file path parameter to 
 include files the application did not intend to serve — 
@@ -304,7 +304,7 @@ in HTTP access logs.
 
 ### 08 — File Upload
 
-📁 [Full Write-Up](08-file-upload/README.md)
+ [Full Write-Up](08-file-upload/README.md)
 
 **What it is:** Uploading a file with a dangerous type — 
 such as a server-side script — when the application fails 
@@ -333,9 +333,9 @@ file path.
 
 ---
 
-## 📖 Key Lessons Learned
+## Key Lessons Learned
 
-📄 [Read the full lessons document](lessons-learned.md)
+ [Read the full lessons document](lessons-learned.md)
 
 Three things became clear working through every vulnerability 
 at every level:
@@ -362,7 +362,7 @@ and application security engineer.
 
 ---
 
-## 🧰 Tools Used
+## Tools Used
 
 | Tool | Purpose | Cost |
 |------|---------|------|
@@ -375,7 +375,7 @@ and application security engineer.
 
 ---
 
-## 📚 References and Further Reading
+## References and Further Reading
 
 - [OWASP Top 10 2021](https://owasp.org/www-project-top-ten/)
 - [MITRE ATT&CK Framework](https://attack.mitre.org/)
@@ -386,7 +386,7 @@ and application security engineer.
 
 ---
 
-## 🤝 Connect
+## Connect
 
 I am actively working toward a SOC analyst role with a 
 focus on blue team operations, log analysis, and web 
