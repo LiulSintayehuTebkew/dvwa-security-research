@@ -4,7 +4,6 @@
 
 In this vulnerability we have login page asking username and password. Even though we know the username and password (username=admin,password=password) we pretend that we don’t know the credential and we try to brute force the password assuming.
 
----
 
 ## Security Level: Low
 
