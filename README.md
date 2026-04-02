@@ -3,10 +3,6 @@
 **Conducted in an isolated lab environment**  
 Kali Linux → Metasploitable2 (DVWA) | Vmware Host-Only Network
 
-##  Legal Disclaimer
-
- All research documented in this repository was conducted exclusively in an isolated Vmware lab environment on systems I personally own and control. No real systems, networks, users, or organisations were involved at any point. This work exists solely for educational purposes — to understand how vulnerabilities work so they can be identified, reported, and remediated professionally.
-**Do not replicate any of this outside of your own controlled lab environment.**
 
 ##  A Note Before You Read
 
@@ -241,3 +237,8 @@ and application security engineer.
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security) 
   — free labs covering every vulnerability documented here
 - [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
+
+##  Legal Disclaimer
+
+ All research documented in this repository was conducted exclusively in an isolated Vmware lab environment on systems I personally own and control. No real systems, networks, users, or organisations were involved at any point. This work exists solely for educational purposes — to understand how vulnerabilities work so they can be identified, reported, and remediated professionally.
+**Do not replicate any of this outside of your own controlled lab environment.**
