@@ -1,34 +1,12 @@
-<div align="center">
-
 #  DVWA Security Research Portfolio
 
-### *From Vulnerability to Defence — A Practical Study*
-
 **Conducted in an isolated lab environment**  
-Kali Linux → Metasploitable2 (DVWA) | VirtualBox Host-Only Network
-
-[![TryHackMe](https://img.shields.io/badge/TryHackMe-Profile-red?style=flat-square&logo=tryhackme)](https://tryhackme.com/p/YOURUSERNAME)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/YOURUSERNAME)
-[![GitHub](https://img.shields.io/badge/GitHub-Portfolio-black?style=flat-square&logo=github)](https://github.com/YOURUSERNAME)
-
-</div>
-
----
+Kali Linux → Metasploitable2 (DVWA) | Vmware Host-Only Network
 
 ##  Legal Disclaimer
 
-> All research documented in this repository was conducted 
-> exclusively in an isolated VirtualBox lab environment on 
-> systems I personally own and control. No real systems, 
-> networks, users, or organisations were involved at any point. 
-> This work exists solely for educational purposes — to 
-> understand how vulnerabilities work so they can be identified, 
-> reported, and remediated professionally.
->
-> **Do not replicate any of this outside of your own controlled 
-> lab environment.**
-
----
+ All research documented in this repository was conducted exclusively in an isolated Vmware lab environment on systems I personally own and control. No real systems, networks, users, or organisations were involved at any point. This work exists solely for educational purposes — to understand how vulnerabilities work so they can be identified, reported, and remediated professionally.
+**Do not replicate any of this outside of your own controlled lab environment.**
 
 ##  A Note Before You Read
 
@@ -56,36 +34,15 @@ actually needs to detect and respond to threats effectively.
 
 | Component | Details |
 |-----------|---------|
-| Attacker Machine | Kali Linux 2024.x (VirtualBox VM) |
+| Attacker Machine | Kali Linux 2024.x (Vmware VM) |
 | Target Machine | Metasploitable2 running DVWA 1.0.7 |
-| Network Configuration | VirtualBox Host-Only Adapter — no internet access |
+| Network Configuration | Vmware Host-Only Adapter — no internet access |
 | Primary Tools | Burp Suite Community, browser DevTools |
 | Security Levels Tested | Low · Medium · High · Impossible |
 
  See [lab-setup](lab-setup/README.md) for full environment 
 configuration with screenshots.
 
----
-
-##  Repository Structure
-```
-dvwa-security-research/
-│
-├── README.md                  ← You are here
-├── lessons-learned.md         ← Cross-cutting insights
-│
-├── lab-setup/                 ← Environment documentation
-├── 01-brute-force/            ← Authentication attacks
-├── 02-command-injection/      ← OS command execution
-├── 03-sql-injection/          ← Database query manipulation
-├── 04-xss-reflected/          ← Reflected cross-site scripting
-├── 05-xss-stored/             ← Stored cross-site scripting
-├── 06-csrf/                   ← Cross-site request forgery
-├── 07-file-inclusion/         ← Local and remote file inclusion
-└── 08-file-upload/            ← Malicious file upload
-```
-
----
 
 ##  Vulnerability Index
 
@@ -98,7 +55,6 @@ real-world breach examples, and the correct remediation.
 
 ### 01 — Brute Force
 
- [Full Write-Up](01-brute-force/README.md)
 
 **What it is:** Systematically attempting username and password 
 combinations against a login form with no rate limiting or 
@@ -126,8 +82,6 @@ sequences. Detecting this pattern is a daily SOC tier 1 task.
 
 ### 02 — Command Injection
 
- [Full Write-Up](02-command-injection/README.md)
-
 **What it is:** Passing user input directly into a system 
 command without sanitisation, allowing shell metacharacters 
 to chain additional commands onto the intended one.
@@ -154,7 +108,6 @@ detection signal.
 
 ### 03 — SQL Injection
 
- [Full Write-Up](03-sql-injection/README.md)
 
 **What it is:** Manipulating the structure of a SQL query by 
 injecting code through user input, allowing an attacker to 
@@ -183,7 +136,6 @@ containing database information in HTTP responses.
 
 ### 04 — XSS Reflected
 
- [Full Write-Up](04-xss-reflected/README.md)
 
 **What it is:** User input that is immediately reflected back 
 in the HTTP response without encoding, allowing script 
@@ -211,70 +163,8 @@ to come from trusted domains.
 
 ---
 
-### 05 — XSS Stored
-
-[Full Write-Up](05-xss-stored/README.md)
-
-**What it is:** Malicious script that is saved to the database 
-and executes in every user's browser that loads the affected 
-page — no crafted link required.
-
-**Why it matters to a SOC analyst:** Stored XSS is the 
-mechanism behind web-based supply chain attacks. The 2018 
-British Airways breach used stored XSS on the payment page 
-to skim 500,000 customers' card details for 22 days. 
-Detecting unexpected external script loads and unusual 
-outbound POST requests from customer browsers are the 
-detection signals.
-
-**Security level progression:**
-
-| Level | Defence Present | Why It Falls Short |
-|-------|----------------|-------------------|
-| Low | None | Payload stored and replayed |
-| Medium | Length limit + filter | Limit bypassable, filter incomplete |
-| High | Stronger filter | Still incomplete |
-| Impossible | Encoding + PDO | Input neutralised before storage |
-
-**MITRE ATT&CK:** T1059.007 — JavaScript  
-**OWASP:** A03:2021 — Injection
-
----
-
-### 06 — CSRF
-
- [Full Write-Up](06-csrf/README.md)
-
-**What it is:** Tricking an authenticated user into 
-submitting a forged request to a web application they 
-are already logged into, causing an unintended action 
-on their behalf.
-
-**Why it matters to a SOC analyst:** CSRF is a social 
-engineering vector that leaves minimal traces — the 
-HTTP request appears to come from the legitimate user's 
-browser. Detection relies on anomaly analysis — actions 
-occurring without corresponding user-initiated navigation, 
-or state-changing requests arriving directly without a 
-preceding GET request to the form page.
-
-**Security level progression:**
-
-| Level | Defence Present | Why It Falls Short |
-|-------|----------------|-------------------|
-| Low | None | Any request with valid cookie accepted |
-| Medium | Referer check | Header can be stripped or manipulated |
-| High | CSRF token | Proper synchroniser token pattern |
-| Impossible | Token + password re-entry | Requires knowledge attacker cannot have |
-
-**MITRE ATT&CK:** T1185 — Browser Session Hijacking  
-**OWASP:** A01:2021 — Broken Access Control
-
----
-
 ### 07 — File Inclusion
 
- [Full Write-Up](07-file-inclusion/README.md)
 
 **What it is:** Manipulating a file path parameter to 
 include files the application did not intend to serve — 
@@ -302,40 +192,8 @@ in HTTP access logs.
 
 ---
 
-### 08 — File Upload
-
- [Full Write-Up](08-file-upload/README.md)
-
-**What it is:** Uploading a file with a dangerous type — 
-such as a server-side script — when the application fails 
-to validate what is actually being uploaded beyond surface 
-checks like file extension or Content-Type header.
-
-**Why it matters to a SOC analyst:** Successful file upload 
-attacks result in web shells — persistent backdoors giving 
-the attacker command execution via HTTP. In EDR telemetry 
-this appears as a web server process executing unexpected 
-child commands. In web logs it appears as POST requests to 
-an upload endpoint followed by GET requests to the uploaded 
-file path.
-
-**Security level progression:**
-
-| Level | Defence Present | Why It Falls Short |
-|-------|----------------|-------------------|
-| Low | None | Any file accepted |
-| Medium | Extension + MIME check | Client-supplied MIME is untrusted |
-| High | Server-side extension check | Magic bytes not verified |
-| Impossible | Magic bytes + rename + path restriction | Full validation stack |
-
-**MITRE ATT&CK:** T1505.003 — Web Shell  
-**OWASP:** A04:2021 — Insecure Design
-
----
-
 ## Key Lessons Learned
 
- [Read the full lessons document](lessons-learned.md)
 
 Three things became clear working through every vulnerability 
 at every level:
@@ -366,7 +224,7 @@ and application security engineer.
 
 | Tool | Purpose | Cost |
 |------|---------|------|
-| VirtualBox | Lab virtualisation | Free |
+| Vmware | Lab virtualisation | Free |
 | Kali Linux | Attacker operating system | Free |
 | Metasploitable2 | Vulnerable target VM | Free |
 | DVWA | Vulnerable web application | Free |
@@ -383,25 +241,3 @@ and application security engineer.
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security) 
   — free labs covering every vulnerability documented here
 - [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
-
----
-
-## Connect
-
-I am actively working toward a SOC analyst role with a 
-focus on blue team operations, log analysis, and web 
-application security. If you are reviewing this portfolio 
-and want to discuss any of the work documented here, 
-I would welcome the conversation.
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/YOURUSERNAME)
-[![TryHackMe](https://img.shields.io/badge/TryHackMe-Profile-red?style=flat-square&logo=tryhackme)](https://tryhackme.com/p/YOURUSERNAME)
-[![Email](https://img.shields.io/badge/Email-Contact-green?style=flat-square&logo=gmail)](mailto:YOUREMAIL)
-
----
-
-<div align="center">
-
-*Built in a lab. Documented with intent. Aimed at defence.*
-
-</div>
